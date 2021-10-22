@@ -1,23 +1,29 @@
 package TerminalOperationsDemo.minMaxExamples;
 
-import util.Employee;
-
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+//Min & Max for String
 
 public class Demo2 {
     public static void main(String[] args) {
-        List<Employee> empList=new ArrayList<Employee>();
+        List<String> list = Arrays.asList("Marco","Daisy","Michael","Sanya","Robin");
 
-        empList.add(new Employee(1,"Marco","marco@gmail.com",25000));
-        empList.add(new Employee(2,"Daisy","daisy@gmail.com",30000));
-        empList.add(new Employee(3,"Michael","michael@gmail.com",40000));
-        empList.add(new Employee(4,"Sanya","sanya@gmail.com",28000));
-        empList.add(new Employee(5,"Robin","robin@gmail.com",50000));
+        //min()
+        Optional<String> minValue = list.stream()
+                .min(Comparator.comparing(String::valueOf));
+        if(minValue.isPresent()){
+            System.out.println(minValue.get()); // Daisy
+        }
 
-
+        list.stream()
+                .min(Comparator.comparing(String::valueOf))
+                .ifPresent(no-> System.out.println("min value is .." + no)); // Daisy
+        // max()
+        list.stream()
+                .max(Comparator.comparing(String::valueOf))
+                .ifPresent(no-> System.out.println("max value is .." + no)); // Sanya
 
     }
 }
